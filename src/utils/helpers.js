@@ -32,7 +32,7 @@ const getMaxRake = (bigBlind, playersDealtCards) => {
 
 /**
  * It returns the rake for the table based on seats & bb
- * @param {number} bb - the big blid
+ * @param {number} bb - the big blind
  * @param {number} playersDealtCards - the number of players who were dealt cards
  */
 const getRake = (bb, playersDealtCards) => {
