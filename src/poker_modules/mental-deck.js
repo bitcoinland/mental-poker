@@ -191,7 +191,7 @@ class MentalDeck {
   }
 
   /**
-   * Retreives the key map with all known keys
+   * Retrieves the key map with all known keys
    */
   getKeyMapWithNonSharedKeys() {
     const res = new Map();
@@ -213,7 +213,7 @@ class MentalDeck {
   }
 
   /**
-   * @param {number[]} c - The indexs of cards to decrypt
+   * @param {number[]} c - The indexes of cards to decrypt
    * @returns {bool, string[]}  Returns success check and decrypted cards
    */
   decryptCards(c) {
@@ -262,7 +262,7 @@ class MentalDeck {
       if (p === player) shuffAndLockIdx.push(i);
     });
 
-    // TODO: Check the key legth
+    // TODO: Check the key length
     // First, check if the hash of the keys matches the commitment
     let keyStr = ''; // The string of keys
     keys.forEach((k, i) => {
@@ -281,7 +281,7 @@ class MentalDeck {
      * It derives a shuffle by multiplying the previous historic deck by the shuffle key
      * and it checks if every card from the derived shuffle exists in the submitted shuffle. */
 
-    // TODO: Shuffle check is vulnerable to attcks. Include only check can be manipulated
+    // TODO: Shuffle check is vulnerable to attacks. Include only check can be manipulated
     const shuffle = mental.encryptDeck(this.history[shuffAndLockIdx[0] - 1], keys[cardCount]);
     // eslint-disable-next-line max-len
     const isShuffleCorrect = shuffle.every(c => this.history[shuffAndLockIdx[0]].findIndex(cardCodeword => cardCodeword.equals(c)) >= 0);
@@ -300,7 +300,7 @@ class MentalDeck {
     // Copy the keys, not to affect the passed ones
     const lockingKeys = keys.map((key, i) => (ignore.includes(i) ? keys[cardCount] : key));
     const locking = mental.encryptDeck(
-      // Decrypt previus deck with given key
+      // Decrypt previous deck with given key
       mental.decryptDeck(this.history[shuffAndLockIdx[1] - 1], lockingKeys[cardCount]),
       lockingKeys,
     );
